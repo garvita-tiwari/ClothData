@@ -1,0 +1,30 @@
+FROM nytimes/blender:2.82-cpu-ubuntu18.04
+ 
+ENV DEBIAN_FRONTEND=noninteractive
+RUN apt-get update && apt-get install -y \ 
+	build-essential \
+	python3.6 \
+	python3.6-dev \ 
+        python3-pip \
+        cmake \
+	libgmp-dev \	
+	ffmpeg \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
+
+# Install blender's Python dependencies (different from apt-installed Python 3.6)
+RUN /bin/2.82/python/bin/pip3 install scipy
+
+WORKDIR /root
+COPY . .
+
+# Install Python 3.6 dependencies, except for PyMesh
+RUN pip3 install -r requirements.txt
+
+# PyMesh's latest wheel is only available for python 3.6
+RUN wget https://github.com/PyMesh/PyMesh/releases/download/v0.2.1/pymesh2-0.2.1-cp36-cp36m-linux_x86_64.whl
+RUN pip3 install pymesh2-0.2.1-cp36-cp36m-linux_x86_64.whl
+
+RUN pip3 install jupyter
+
+CMD ["jupyter", "notebook", "--port=8888", "--no-browser", "--ip=0.0.0.0", "--allow-root"]
