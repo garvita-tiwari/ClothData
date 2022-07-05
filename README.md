@@ -1,4 +1,6 @@
 This repository contains list of all 3D clothing datasets and details of annotations.
+Some of the codes are directly copied from the original repo or a link to original repo is provided. Please contact us, if we missed to cite appropriate sources.
+
 
 ### SIZER Dataset
     https://github.com/garvita-tiwari/sizer_dataset
