@@ -2,7 +2,9 @@ This repository contains list of all 3D clothing datasets and details of annotat
 
 ### SIZER Dataset
     https://github.com/garvita-tiwari/sizer_dataset
-####Dataset:
+
+#### Dataset
+
     - Scans
     - SMPL, SMPL+D, SMPL+G registrations
     - Segmented scans(only upper clothing, lower clothing and skin)
